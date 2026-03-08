@@ -1,5 +1,3 @@
-
-
 namespace Loupedeck.SolidWorksPlugin
 {
     using System;

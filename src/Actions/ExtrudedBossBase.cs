@@ -3,19 +3,16 @@ namespace Loupedeck.SolidWorksPlugin
     using System;
 
     using Loupedeck.SolidWorksPlugin.Helpers;
-    public class Sketch : PluginDynamicCommand
+    public class ExtrudedBossBase : PluginDynamicCommand
     {
-
-        private readonly Boolean _isInSketchMode = false;
-
-        public Sketch()
-            : base(displayName: "Sketch", description: "Sketch mode", groupName: "Sketch Tools")
+        private readonly String _Icon;
+        public ExtrudedBossBase()
+            : base(displayName: "Extruded Boss/Base", description: "Create an extruded boss/base", groupName: "Sketch Tools")
         {
         }
 
         protected override void RunCommand(String actionParameter)
         {
-
             try
             {
                 // get the SolidWorks application; exit if not available
@@ -34,11 +31,7 @@ namespace Loupedeck.SolidWorksPlugin
                     return;
                 }
 
-                // Enter sketch on the selected plane
-                SketchManager sketchMgr = model.SketchManager;
-                sketchMgr.InsertSketch(true);
-
-                Console.WriteLine("Entered sketch mode.");
+                swApp.RunCommand((Int32)swCommands_e.swCommands_ExtrudedBossBase, ""); // Run the Extruded Boss/Base command
 
             }
             catch (Exception ex)
@@ -46,8 +39,8 @@ namespace Loupedeck.SolidWorksPlugin
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
-            => BitmapImage.FromResource(this.Plugin.Assembly, "Loupedeck.SolidWorksPlugin.Sketch.png");
 
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+            => BitmapImage.FromResource(this.Plugin.Assembly, "Loupedeck.SolidWorksPlugin.ExtrudedBossBase.png");
     }
 }
