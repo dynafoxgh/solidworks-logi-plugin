@@ -11,7 +11,7 @@ public abstract class BasicSolidWorksAction : PluginDynamicCommand
             description: description, 
             groupName: groupName)
     {
-        this._Icon = displayName.Replace(" ","");
+        this._Icon = displayName.Replace(" ","").Replace("/","");
         this._Command = command;
     }
 
