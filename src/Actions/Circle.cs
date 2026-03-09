@@ -1,8 +1,5 @@
 namespace Loupedeck.SolidWorksPlugin
 {
-    using System;
-
-    using Loupedeck.SolidWorksPlugin.Helpers;
     public class Circle : BasicSolidWorksAction
     {
         public Circle()
