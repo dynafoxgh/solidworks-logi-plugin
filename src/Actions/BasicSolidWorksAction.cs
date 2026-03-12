@@ -34,9 +34,9 @@ public abstract class BasicSolidWorksAction : PluginDynamicCommand
                 Console.WriteLine("No active document in SolidWorks.");
                 return;
             }
-
-            swApp.RunCommand((Int32)this._Command, ""); // Run the Add Relation command
-
+            swApp.CommandInProgress = true;
+            swApp.RunCommand((Int32)this._Command, ""); // Run the solidworks command
+            swApp.CommandInProgress = false;
         }
         catch (Exception ex)
         {

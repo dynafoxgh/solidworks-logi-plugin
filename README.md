@@ -4,9 +4,21 @@ This plugin provides a set of commands for controlling SolidWorks using Logi Opt
 
 ## Future Enhancements
 
-- [x] Implement undo/redo functionality.
-- [ ] Add support for more sketch entities.
-- [x] Improve code to remove repetition and enhance maintainability.
+- [ ] Improve folder structure in the command list.
+
+## Future Commands
+
+- [ ] Add isolate components command.
+- [ ] Supress/unsuppress features command.
+- [ ] Ability to control section plane with dials.
+- [ ] Section view command.
+
+## Removed Commands
+
+Some commands that are easily accessible through the context menu in SolidWorks have been removed to streamline the plugin and focus on more unique functionalities. These include:
+Extrude, Revolve, Fillet, Chamfer, Sketch features and other commonly used features.
+
+If you do want to see these commands added back in the future, please let us know by opening an issue or submitting a pull request.
 
 ## Contributing
 
