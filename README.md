@@ -6,13 +6,6 @@ This plugin provides a set of commands for controlling SolidWorks using Logi Opt
 
 - [ ] Improve folder structure in the command list.
 
-## Future Commands
-
-- [ ] Add isolate components command.
-- [ ] Supress/unsuppress features command.
-- [ ] Ability to control section plane with dials.
-- [ ] Section view command.
-
 ## Removed Commands
 
 Some commands that are easily accessible through the context menu in SolidWorks have been removed to streamline the plugin and focus on more unique functionalities. These include:

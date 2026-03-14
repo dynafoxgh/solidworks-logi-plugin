@@ -19,30 +19,29 @@ public abstract class BasicSolidWorksAction : PluginDynamicCommand
     {
         try
         {
-            // get the SolidWorks application; exit if not available
-            if (!SolidWorksConnector.TryGetApplication(out var swApp))
+            if (!SolidWorksConnector.TryGetActiveDocument(out var swApp, out var model))
             {
-                Console.WriteLine("SolidWorks is not running.");
                 return;
             }
-            Console.WriteLine("Connected to SolidWorks.");
 
-            // Attach to the active document
-            var model = (ModelDoc2)swApp.ActiveDoc;
-            if (model == null)
-            {
-                Console.WriteLine("No active document in SolidWorks.");
-                return;
-            }
             swApp.CommandInProgress = true;
-            swApp.RunCommand((Int32)this._Command, ""); // Run the solidworks command
-            swApp.CommandInProgress = false;
+            this.ExecuteCommand(swApp, model, actionParameter);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error: {ex.Message}");
         }
+        finally
+        {
+            if (SolidWorksConnector.TryGetApplication(out var swApp))
+            {
+                swApp.CommandInProgress = false;
+            }
+        }
     }
+
+    protected virtual void ExecuteCommand(SldWorks swApp, ModelDoc2 activeDoc, String actionParameter)
+        => swApp.RunCommand((Int32)this._Command, ""); // Run the SolidWorks command.
 
     protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         => BitmapImage.FromResource(this.Plugin.Assembly, $"Loupedeck.SolidWorksPlugin.{this._Icon}.png");

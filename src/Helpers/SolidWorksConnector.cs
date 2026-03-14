@@ -37,6 +37,34 @@ namespace Loupedeck.SolidWorksPlugin.Helpers
         }
 
         /// <summary>
+        /// Attempts to return a running SolidWorks instance and its active document.
+        /// </summary>
+        /// <param name="swApp">Out parameter containing the application if successful.</param>
+        /// <param name="activeDoc">Out parameter containing the active document if successful.</param>
+        /// <returns>True when both application and active document are available; otherwise false.</returns>
+        public static Boolean TryGetActiveDocument(out SldWorks swApp, out ModelDoc2 activeDoc)
+        {
+            activeDoc = null;
+
+            if (!TryGetApplication(out swApp) || swApp == null)
+            {
+                Console.WriteLine("SolidWorks is not running.");
+                return false;
+            }
+
+            Console.WriteLine("Connected to SolidWorks.");
+
+            activeDoc = swApp.ActiveDoc as ModelDoc2;
+            if (activeDoc == null)
+            {
+                Console.WriteLine("No active document in SolidWorks.");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Gets the SolidWorks application instance or throws if it cannot be obtained.
         /// </summary>
         /// <returns>Running <see cref="SldWorks"/> instance.</returns>
